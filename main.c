@@ -2,6 +2,9 @@
 
 
 void Arquivos(FILE *database);
+float pic(float *p, float *q, int n); //Calcula o PIC
+float guc(float*p, float *q, float*u, int n);// Calcula o GCU
+
 
 
 int main(){
@@ -34,6 +37,36 @@ void Arquivos(FILE *database){
     fclose(database);
 }
 
+float pic(float p[], float q[],int n){
+
+    float somap = 0,somaq = 0, pic;
+
+    for(int i=0;i<n;i++)
+    {
+        somap += p[i];   //somatório    
+        somaq += q[i];   //somatório
+    }
+
+    pic = somap / somaq; //fórmula pic
+
+    return pic;
+}
+
+float guc(float p[], float q[] , float u[],int n){
+
+    float x = 0, y = 0 , guc; //x=somatio dividendo da fórmula, y= divisor fórmula
+
+    for(int i=0;i<n;i++)
+    {
+        x +=  u[i] * (p[i] - q[i]);
+        y += (p[i]-q[i]);    
+    }
+
+    guc = x / y; 
+
+    return guc;
+
+}
 
 
 
