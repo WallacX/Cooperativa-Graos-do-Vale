@@ -3,14 +3,14 @@
 
 int file_exists(const char *path) {
     struct stat buffer;
-    return (stat(path, &buffer) == 0);
+    return (stat(path, &buffer) == 0); // Verifica se o arquivo existe, 0 para verdadeiro e != de 0 para falso (1)
 }
 
 int main() {
     const char *filename = "testemaenu.txt"; //Nome do arquivo
 
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s", filename);
+    snprintf(filepath, sizeof(filepath), "%s", filename); // vericar o arquivo na pasta
 
     if (file_exists(filepath)) {
         printf("O arquivo '%s' ja existe no diretorio'.\n", filename);
