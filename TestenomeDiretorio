@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <sys/stat.h>
+
+int file_exists(const char *path) {
+    struct stat buffer;
+    return (stat(path, &buffer) == 0);
+}
+
+int main() {
+    const char *filename = "testemaenu.txt"; //Nome do arquivo
+
+    char filepath[1024];
+    snprintf(filepath, sizeof(filepath), "%s", filename);
+
+    if (file_exists(filepath)) {
+        printf("O arquivo '%s' ja existe no diretorio'.\n", filename);
+    } else {
+        printf("O arquivo '%s' nao existe no diretorio'.\n", filename);
+    }
+
+    return 0;
+}
