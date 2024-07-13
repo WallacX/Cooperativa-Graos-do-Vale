@@ -1,38 +1,38 @@
 #include <stdio.h>
 //#define n 15
 
-float pic(float *p, float *q, int n);
-float guc(float*p, float *q, float*u, int n);
+float pic(float *brutoamostra, float *pesoimpurezas, int qtdamostras);
+float guc(float*brutoamostra, float *pesoimpurezas, float*grauumidade, int qtdamostras);
 
 int main(){
 
-    int n;
-    printf("\nDigite o valor de n");
-    scanf("%d",&n);
+    int qtdamostras;
+    printf("\nDigite o valor de n° de amostras: ");
+    scanf("%d",&qtdamostras);
 
-    float p[n],q[n],u[n];
+    float brutoamostra[qtdamostras],pesoimpurezas[qtdamostras],grauumidade[qtdamostras];
     
-    for(int i=0; i<n;i++)
+    for(int i=0; i<qtdamostras;i++)
     {
-    printf("\np[%d], q[%d], u[%d]", i, i, i);
-    scanf("%f %f %f", &p[i], &q[i], &u[i]);
+    printf("\nbrutoamostra[%d], pesoimpurezas[%d], grauumidade[%d]", i, i, i);
+    scanf("%f %f %f", &brutoamostra[i], &pesoimpurezas[i], &grauumidade[i]);
     }
 
-    printf("\nPic: %.2f",pic(p,q,n));
-    printf("\nGuc: %.2f",guc(p,q,u,n));
+    printf("\nPic: %.2f",pic(brutoamostra,pesoimpurezas,qtdamostras));
+    printf("\nGuc: %.2f",guc(brutoamostra,pesoimpurezas,grauumidade,qtdamostras));
 
     return 0;
 
 }
 
-float pic(float p[], float q[],int n){
+float pic(float brutoamostra[], float pesoimpurezas[],int qtdamostras){
 
     float somap = 0,somaq = 0, pic;
 
-    for(int i=0;i<n;i++)
+    for(int i=0;i<qtdamostras;i++)
     {
-        somap += p[i];       
-        somaq += q[i];
+        somap += brutoamostra[i];       
+        somaq += pesoimpurezas[i];
     }
 
     pic = somap / somaq;
@@ -40,14 +40,14 @@ float pic(float p[], float q[],int n){
     return pic;
 }
 
-float guc(float p[], float q[] , float u[],int n){
+float guc(float brutoamostra[], float pesoimpurezas[] , float grauumidade[],int qtdamostras){
 
     float x = 0, y = 0 , guc;
 
-    for(int i=0;i<n;i++)
+    for(int i=0;i<qtdamostras;i++)
     {
-        x +=  u[i] * (p[i] - q[i]);
-        y += (p[i]-q[i]);    
+        x +=  grauumidade[i] * (brutoamostra[i] - pesoimpurezas[i]);
+        y += (brutoamostra[i]-pesoimpurezas[i]);    
     }
 
     guc = x / y;
@@ -55,3 +55,4 @@ float guc(float p[], float q[] , float u[],int n){
     return guc;
 
 }
+
