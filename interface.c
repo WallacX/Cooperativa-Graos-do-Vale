@@ -1,6 +1,7 @@
- #include "interface.h"
+#include "interface.h"
 #include <stdio.h>
 
+//Definição dos comandos para mudança de cor dos textos imprimidos
 #define PDR "\033[0m"
 #define PTR "\033[30m"
 #define VRM "\033[31m"
@@ -34,7 +35,7 @@ void RelatorioCarga(int origem, int dia, int mes, float guc, float plimpo, int t
   printf("|         Umidade: "VRD"%.1f%%"PDR" \t Peso limpo: "VRD"%02.2f"PDR"\t\t\tTransgenico: "VRD"%-14d\033[0m|\n", guc, plimpo, tipo);
     printf("|%-82s|", "");
 
-
+    //Impressão do relatório de carga de cada faixa
     int aux = 0;
     printf("\n|Umidade: Faixa 1 \t\t Quant.:"VRD" %-50d"PDR"|\n", f1cont);
     printf("|Ident. das Amostras:"AMA);
@@ -161,7 +162,7 @@ void RelatorioMensal(int m, int qtdcarregamentos){
     float pesobruto, pic, guc;
 
     if(m != 0){
-
+        //Leitura de cada linha do arquivo comparando se é igual ao mes que foi passado
         for(int i = 0; i < qtdcarregamentos; i++){
             fread(&origem, sizeof(int), 1, database);
             fread(&carga, sizeof(int), 1, database);
@@ -188,6 +189,7 @@ void RelatorioMensal(int m, int qtdcarregamentos){
     }
         
     else{
+        //Leitura de cada linha do arquivo, do inicio ao fim imprimindo cada mes
         int aux = 0;
         for(int i = 1; i <= 12; i++){
             rewind(database);
